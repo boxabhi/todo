@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    background-color: #ecf0f1;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  a:focus,
+  a:hover {
+    color: inherit;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0 2px 2px #7f8c8d;
+    background-color:#3498db;
+    
+    color:black;
+    font-size: 15px;
+  }
+  .logo {
+    padding: 16px;
+    font-weight: bold;
+  }
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+  }
+  nav > ul {
+    display: flex;
+  }
+  nav > ul > li {
+    margin-right: 16px;
+  }
+  .container {
+    padding: 0 150px;
+  }
+  .todo-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px #7f8c8d;
+    background-color: #fff;
+    padding: 16px;
+  }
+  .todo-details div {
+    margin-top: 8px;
+  }
+  .todo-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .todo-tools {
+    align-self: flex-end;
+  }
+  .todo-deadline {
+    display: inline-block;
+    background-color: #3498db;
+    padding: 6px 8px;
+    color: #fff;
+  }
+  .input-textbox {
+    border: 0;
+    border-radius: 2px;
+    padding: 6px 2px;
+    font-family: inherit;
+    font-size: 100%;
+  }
+  .input{
+      padding:15px;
+      border-radius:5px;
+  }
+  textarea{
+      margin-top: 15px;
+      margin-bottom: 15px;
+      border-radius:5px;
+  }
+  .card{
+    -webkit-box-shadow: 10px 6px 44px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 6px 44px -7px rgba(0,0,0,0.75);
+    box-shadow: 10px 6px 44px -7px rgba(0,0,0,0.75);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .add-todo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .submit-btn {
+    float: right;
+    align-self: flex-end;
+    order: 2;
+    border: 0;
+    border-radius: 2px;
+    background-color:#3498db;
+    padding: 8px;
+    width: 150px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 100%;
+  }
+  .link {
+    margin-top: 4px;
+  }
