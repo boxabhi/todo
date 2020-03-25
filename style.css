@@ -28,11 +28,15 @@ body {
     list-style-type: none;
     padding-inline-start: 0;
   }
+  .done{
+    text-decoration: line-through;
+  }
   nav > ul {
     display: flex;
   }
   nav > ul > li {
     margin-right: 16px;
+    
   }
   .container {
     padding: 0 150px;

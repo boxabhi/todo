@@ -15,10 +15,8 @@ addTaskbutton.addEventListener('click',function() {
     description:taskDescription ,
     deadline:dead
   }
-    tasks.push(todo);
-addToStorage(todo)
+    addToStorage(todo)
   
-
 taskTitleInputTextbox.value='';
 taskDescriptionlist.value='';
 deadlinelist.value='';
@@ -27,6 +25,10 @@ deadlinelist.value='';
 
 function addToStorage(todo){
     let items = []
+    if(localStorage.getItem('todo') === null){ 
+        localStorage.setItem('todo' , JSON.stringify(items));
+    }
+    console.log(JSON.stringify(localStorage.getItem('todo')))
     items = JSON.parse(localStorage.getItem('todo'))
     console.log(items);
     items.push(todo);
@@ -35,50 +37,31 @@ function addToStorage(todo){
 }
 
 function deleteTodo(index){
-    var newtask=[];
-    for(var i=0;i<tasks.length;i++)
-    {
-        var singleitem=tasks[i];
-        if(i!==index)
-        {
-            newtask.push(singleitem);
-        }
-    }
-    tasks=newtask;
-    renderList();
+   let items = JSON.parse(localStorage.getItem('todo'));
+   items.pop(index)
+   localStorage.setItem('todo',JSON.stringify(items))
+   renderList();
 }
-function editTodo(index){
-    console.log(taskTitleInputTextbox);
-    var taskTitle=taskTitleInputTextbox.value;
-    var taskDescription=taskDescriptionlist.value;
-    var dead=deadlinelist.value;
-    i=index
-    taskTitleInputTextbox.value=tasks[i].title;
-    taskDescriptionlist.value=tasks[i].description;
-    //deadlinelist.value=index.dead;
-    var newtask=[];
-    for(var i=0;i<tasks.length;i++)
-    {
-        var singleitem=tasks[i];
-        if(i!==index)
-        {
-            newtask.push(singleitem);
-        }
-    }
-    tasks=newtask;
+
+function editTodo(event,index){
+    event.preventDefault();
+    console.log(index)
+    var todos = JSON.parse(localStorage.getItem('todo'))
+    console.log(todos[index]);
+    taskTitleInputTextbox.value=todos[index].title
+    taskDescriptionlist.value= todos[index].description;
+    deadlinelist.value= todos[index].deadline;
     renderList();
 }
 
 
 function markasComplete(index){
-    i=index;
-    tasks[index].title=tasks[index].title.strike();
-    tasks[index].description=tasks[index].description + " is completed";
-    //taskDescriptionlist.value=task[index].description;
-    renderList();
-
- //document.getElementById('all').style.background=color;
- //renderList();
+    var done = document.getElementById('done_'+index);
+    var btn = document.getElementById('button_'+index)
+    btn.innerHTML = 'Undone';
+    done.setAttribute('class','done');
+    console.log(done)
+    //renderList();
 }
 
 function renderList(){
@@ -88,20 +71,19 @@ function renderList(){
     for(var i=0; i<items.length; i++){
     html  +=   `<li><div class="todo-item"> 
                 <div id="all" class="todo-details"> 
-                <div id="titl" class="todo-title">${items[i].title}</div> 
+                <div id="titl" class="todo-title">
+                <p id="done_${i}">${items[i].title}</p></div> 
                 <div class="todo-description">${items[i].description}</div> 
                 <div class="todo-deadline">${items[i].deadline}</div></div> 
                 <div class="todo-tools"> 
-                <a href="#" onclick="markasComplete('+index+')">Mark As Complete</a> | 
-                <a href="#" onclick="editTodo('+index+')">Edit</a> | 
-                <a href="#" onclick="deleteTodo('+index+')">Delete</a> 
+                <a href="#" id="button_${i}" onclick="markasComplete(${i})">Mark As Complete</a> | 
+                <a href="#" onclick="editTodo(event,${i})">Edit</a> | 
+                <a href="#" onclick="deleteTodo(${i})">Delete</a> 
             </div> 
         </div> 
     </li>`;
     }
-
-    taskListElement.innerHTML = html
-   console.log(html)
+    taskListElement.innerHTML = html;
    
 
 }
